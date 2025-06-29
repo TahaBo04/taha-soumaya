@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Her Pictures</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- Lightbox2 CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
+    <style>
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            padding: 20px;
+        }
+        .gallery a {
+            flex: 1 1 200px;
+            max-width: 300px;
+        }
+        .gallery a img {
+            width: 100%;
+            height: auto;
+            border: 3px solid white;
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+        .gallery a img:hover {
+            transform: scale(1.03);
+        }
+
+        @media (max-width: 600px) {
+            .gallery {
+                gap: 10px;
+                padding: 10px;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Her Pictures</h1>
+    <div class="gallery">
+        {% for file in [
+            'illustration.jpeg', 'IMG_2009.jpeg', 'IMG_2013.jpeg',
+            'IMG_8664.jpeg', 'IMG_8665.jpeg', 'IMG_8666.jpeg',
+            'IMG_8667.jpeg', 'IMG_8668.jpeg', 'IMG_8669.jpeg',
+            'IMG_8670.jpeg', 'IMG_8671.jpeg', 'IMG_8672.jpeg',
+            'IMG_8673.jpeg', 'wedding.jpeg'
+        ] %}
+        <a href="{{ url_for('static', filename='pictures/' + file) }}" data-lightbox="soumaya">
+            <img src="{{ url_for('static', filename='pictures/' + file) }}" alt="Soumaya">
+        </a>
+        {% endfor %}
+    </div>
+
+    <br>
+    <a href="/"><div class="box">← Back to Home</div></a>
+
+    <!-- Lightbox2 JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js"></script>
+</body>
+</html>

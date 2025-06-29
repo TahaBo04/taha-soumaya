@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memorable Moments</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .moments-container {
+            max-width: 800px;
+            margin: auto;
+            padding: 30px;
+            color: white;
+        }
+
+        .moment {
+            background-color: #222;
+            border-left: 5px solid #f5f5f5;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .moment h3 {
+            margin-top: 0;
+            color: #ffe;
+        }
+
+        form {
+            background-color: #111;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 40px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1em;
+        }
+
+        button {
+            margin-top: 15px;
+            background-color: white;
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Memorable Moments</h1>
+
+    <div class="moments-container">
+        <!-- Predefined moments -->
+        <div class="moment">
+            <h3>✨ The First Time I Saw You</h3>
+            <p>I still remember how everything slowed down for a second in that tram station. The way you smiled... I knew nothing would be the same again.</p>
+        </div>
+        <div class="moment">
+            <h3>💬 Our First Deep Talk</h3>
+            <p>That one night you called me and we talked about our fears, dreams, memories and love — it felt like I had known you forever.</p>
+        </div>
+
+        <!-- Display her submitted moments -->
+        {% for mem in user_memories %}
+        <div class="moment">
+            <h3>📝 {{ mem.title }}</h3>
+            <p>{{ mem.text }}</p>
+        </div>
+        {% endfor %}
+
+        <!-- Form to submit a new memory -->
+        <form method="POST" action="/moments">
+            <h3>Add Your Own Moment 💬</h3>
+            <input type="text" name="title" placeholder="Moment Title" required>
+            <textarea name="text" rows="4" placeholder="Write your memory here..." required></textarea>
+            <button type="submit">Submit Memory</button>
+        </form>
+    </div>
+
+    <a href="/"><div class="box">← Back to Home</div></a>
+</body>
+</html>

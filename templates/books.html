@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Books I Wrote Her</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Books I Wrote Her</h1>
+    <div class="container">
+        <a href="{{ url_for('static', filename='books/A_book.pdf') }}" target="_blank">
+            <div class="box">📘 A Book</div>
+        </a>
+        <a href="{{ url_for('static', filename='books/To_the_angel_that_you_merely_are.pdf') }}" target="_blank">
+            <div class="box">📖 To the Angel That You Merely Are</div>
+        </a>
+        <a href="/"><div class="box">← Back to Home</div></a>
+    </div>
+</body>
+</html>
